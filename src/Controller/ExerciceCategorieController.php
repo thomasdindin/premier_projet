@@ -17,6 +17,7 @@ class ExerciceCategorieController extends AbstractController
         return $this->render('exercice_categorie/index.html.twig', [
             'controller_name' => 'ExerciceCategorieController',
             'categories' => $categories,
+            'username' => $this->getUser(),
         ]);
     }
 }

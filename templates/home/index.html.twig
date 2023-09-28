@@ -4,7 +4,7 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em ; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper { margin: 1em ; width: 95%; font: 18px/1.5 sans-serif; display: flex; flex-direction: column; gap: 2rem;}
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 
     .example-wrapper ul li {
@@ -12,6 +12,7 @@
         border: 1px solid #ccc;
         margin-bottom: 10px;
         padding: 10px;
+        border-radius: 5px;
     }
 
     .example-wrapper ul li h2 {
@@ -23,25 +24,71 @@
         flex-direction: row;
         gap: 1rem;
     }
+
+    .split{
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+        margin: 1rem 0;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 1rem;
+    }
+
+    .row a {
+        color: black
+    }
+
+    .article {
+        width: 25rem;
+        max-width: 170px;
+
+    }
+
+    .article .description {
+        margin: 1rem 0;
+        font-size: 12px;
+    }
 </style>
 
 <div class="example-wrapper">
     <h1>Hello {{ username }}! ✅</h1>
-    <h2> {{titre}} </h2>
-    <p> Consulter les articles </p>
-    <ul>
+    <div class="articles-wrapper">
+    <div class="row">
+            <h2> Consulter les articles </h2>
+            <a href="{{ path('app_article') }}"><i class="fa-solid fa-plus"></i></a>
+    </div>
+        <hr class="split">
+        <ul>
+        {% for article in articles %}
+            <div class="article">
+                <li>
+                    <div class="row">
+                        <h2> {{article.titre}} </h2>
+                        <a href="{{ path('app_edit_article', {'id': article.id}) }}"><i class="fa-solid fa-pen"></i></a>
+                    </div>
+                    <p class="description"> {{article.contenu}} </p>
+                    <div class="row">
+                        <i class="fa-solid fa-calendar"></i>
+                        <sub> {{article.datecreation|date('d/m/Y')}} </sub>
+                    </div>
+                    <div class="row">
+                        <i class="fa-solid fa-user"></i>
+                        <sub> {{article.auteur}} </p>
 
-    {% for article in articles %}
-    <li>
-        <h2> {{article.titre}} </h2>
-        <p> {{article.contenu}} </p>
-        <sub> {{article.datecreation|date('d/m/Y')}} </sub>
-        <p> {{article.auteur}} </p>
-    </li>
-    {% endfor %}
-    </ul>
-
-    <a href="{{ path('app_article') }}">Ajouter un article</a>
+                    </div>
+                </li>
+            </div>
+        </a>
+        {% endfor %}
+        </ul>
+    </div>
 
 </div>
 {% endblock %}

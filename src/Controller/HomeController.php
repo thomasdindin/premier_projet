@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findAll();
@@ -18,6 +18,7 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
             'titre' => 'Bienvenue sur mon site',
             'articles' => $articles,
+            'username' => $this->getUser()
         ]);
     }
 

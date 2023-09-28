@@ -6,6 +6,7 @@ use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ArticleType extends AbstractType
 {
@@ -15,7 +16,10 @@ class ArticleType extends AbstractType
             ->add('titre')
             ->add('contenu')
             ->add('la_categorie')
-            ->add('save', SubmitType::class, ['label' => 'Créer un article'])
+            
+            ->add('save', SubmitType::class, [
+                'attr' => ['class' => 'save'],
+            ]);
         ;
     }
 

@@ -4,20 +4,44 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper { margin: 1em ; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+    .example-wrapper ul li {
+        list-style: none;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .example-wrapper ul li h2 {
+        margin: 0;
+    }
+
+    .example-wrapper ul {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello {{ username }}! ✅</h1>
     <h2> {{titre}} </h2>
+    <p> Consulter les articles </p>
+    <ul>
 
-    {{ dump(articles) }}
     {% for article in articles %}
+    <li>
         <h2> {{article.titre}} </h2>
         <p> {{article.contenu}} </p>
         <sub> {{article.datecreation|date('d/m/Y')}} </sub>
         <p> {{article.auteur}} </p>
+    </li>
     {% endfor %}
+    </ul>
+
+    <a href="{{ path('app_article') }}">Ajouter un article</a>
+
 </div>
 {% endblock %}

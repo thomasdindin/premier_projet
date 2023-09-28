@@ -23,9 +23,6 @@ class Article
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_creation = null;
 
-    #[ORM\Column]
-    private ?int $fk_categorie = null;
-
     #[ORM\ManyToOne(inversedBy: 'les_articles')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $la_categorie = null;
@@ -71,18 +68,6 @@ class Article
     public function setDateCreation(\DateTimeInterface $date_creation): static
     {
         $this->date_creation = $date_creation;
-
-        return $this;
-    }
-
-    public function getFkCategorie(): ?int
-    {
-        return $this->fk_categorie;
-    }
-
-    public function setFkCategorie(int $fk_categorie): static
-    {
-        $this->fk_categorie = $fk_categorie;
 
         return $this;
     }

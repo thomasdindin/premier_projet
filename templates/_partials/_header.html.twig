@@ -41,18 +41,7 @@
     <header>
         <h1> COOK3O</h1>
 
-        {% if username %}
-                <ul >
-                    <li><a href="{{ path('app_home')}}">Accueil</a></li>
-                    <li><a href="{{ path('app_article')}}">Ajouter un article</a></li>
-                    <li><a href="{{ path('app_logout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
-                </ul>
-
-        {% else %}
-
-                <ul><li><a href="{{ path('app_login')}}"><i class="fa-solid fa-right-to-bracket"></i></a></li></ul>
-        {% endif %} 
-
+        
     </header>
 
 {% endblock %}
